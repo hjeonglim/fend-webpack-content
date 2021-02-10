@@ -11,6 +11,11 @@ module.exports = {
         libraryTarget: 'var',
         library: 'Client'
     },
+    devServer: {
+        proxy: {
+            '/': 'http://localhost:8081'
+        }
+    },
     stats: 'verbose',
     module: {
         rules: [
