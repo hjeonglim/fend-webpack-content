@@ -7,7 +7,7 @@ function handleSubmit(event) {
 
     console.log("::: Form Submitted :::")
     fetch('/test')
-    .then(res =>{
+    .then(res => {
         return res.json()
     })
     .then(function(data) {
