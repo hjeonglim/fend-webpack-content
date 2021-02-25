@@ -1,23 +1,14 @@
 function handleSubmit(event) {
     event.preventDefault()
-
-    console.log("clicked")
-
-    const msg = document.querySelector("#name").value;
-   
     
-    postData('/data', {message: msg});
-
     // // check what text was put into the form field
-    // let formText = document.getElementById('name').value
-    // checkForName(formText)
-
-    // console.log("::: Form Submitted :::")
-    // fetch('http://localhost:8080/test')
-    // .then(res => res.json())
-    // .then(function(res) {
-    //     document.getElementById('results').innerHTML = res.message
-    // })
+    const formText = document.querySelector("#name").value;
+    Client.checkForName(formText)
+    
+    postData('/data', {message: formText})
+    .then(function(res) {
+        document.getElementById('results').innerHTML = res.sentiment;
+    })
 }
 
 const postData = async (url='', data = {}) => {
@@ -29,12 +20,16 @@ const postData = async (url='', data = {}) => {
         },
         body: JSON.stringify(data)
     });
-    try{
+    try {
         const newData = await res.json();
+        console.log('Response received by client: ', newData);
         return newData;
-    } catch(error){
+    } catch(error) {
         console.log("error", error);    
     }
+}
+
+function onBlur() {    
 }
 
 export { handleSubmit }

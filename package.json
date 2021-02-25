@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "hi": "ls -l",
     "test": "jest",
     "start": "node src/server/index.js",
     "dev-start": "nodemon src/server/index.js",
