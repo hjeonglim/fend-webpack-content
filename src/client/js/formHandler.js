@@ -5,27 +5,31 @@ function handleSubmit(event) {
     const formText = document.querySelector("#name").value;
     Client.checkForName(formText)
     
-    postData('/data', {message: formText})
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.sentiment;
-    })
+   postData('/data', {message: formText})
+   .then(function(res) {
+        document.querySelector("#confidence").innerHTML = `Confidence: ${res.confidence}`;
+        document.querySelector("#subjectivity").innerHTML = `Subjectivity: ${res.subjectivity}`;
+        document.querySelector("#agreement").innerHTML = `Agreement: ${res.agreement}`;
+        document.querySelector("#irony").innerHTML = `Irony: ${res.irony}`;
+        document.querySelector("#score_tag").innerHTML = `Score Tag: ${res.score_tag}`;
+   })
 }
 
-const postData = async (url='', data = {}) => {
+async function postData(url, data) {
     const res = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
-            'Content-Type':'application/json'
+            'content-type': 'application/json'
         },
         body: JSON.stringify(data)
     });
     try {
         const newData = await res.json();
-        console.log('Response received by client: ', newData);
+        console.log(newData)
         return newData;
-    } catch(error) {
-        console.log("error", error);    
+    } catch(error){
+        console.log('error', error);
     }
 }
 
