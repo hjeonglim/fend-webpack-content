@@ -13,7 +13,7 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            '/': 'http://localhost:8081'
+            '/data': 'http://localhost:3000'
         }
     },
     stats: 'verbose',
