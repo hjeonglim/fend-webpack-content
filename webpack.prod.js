@@ -33,7 +33,10 @@ module.exports = {
             filename: "./index.html",
         }),
         new MiniCssExtractPlugin({ filename: "[name].css" }),
-        new WorkpoxPlugin.GenerateSW()
+        new WorkpoxPlugin.GenerateSW({
+            clientsClain: true,
+            skipWaiting: true,
+        }),
     ],
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
